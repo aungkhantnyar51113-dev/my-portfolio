@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 
 import Home from './components/Home'
+import About from './components/About'
 import TechTrip from './components/TechTrip'
 import Projects from './components/Projects'
 import Certificates from './components/Certificates'
-import { Github, Mail, Menu, X, Sun, Moon } from 'lucide-react'
+import { Github, Mail, Menu, X, Sun, Moon, Home as HomeIcon, Compass, Code2, Award, User } from 'lucide-react'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -17,6 +18,17 @@ function App() {
     }
     return 'light'
   })
+
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // md breakpoint
+        setIsMenuOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Intersection Observer to update active section on scroll
   useEffect(() => {
@@ -35,7 +47,7 @@ function App() {
     }
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
-    const sections = ['home', 'techtrip', 'projects', 'certificates']
+    const sections = ['home', 'about', 'techtrip', 'projects', 'certificates']
     
     sections.forEach((id) => {
       const element = document.getElementById(id)
@@ -60,16 +72,17 @@ function App() {
   }
 
   const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'techtrip', label: 'Tech Trip' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'certificates', label: 'Certificates' },
+    { id: 'home', label: 'Home', icon: <HomeIcon size={20} /> },
+    { id: 'about', label: 'About', icon: <User size={20} /> },
+    { id: 'techtrip', label: 'Tech Trip', icon: <Compass size={20} /> },
+    { id: 'projects', label: 'Projects', icon: <Code2 size={20} /> },
+    { id: 'certificates', label: 'Certificates', icon: <Award size={20} /> },
   ]
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-amber-100 dark:selection:bg-amber-900/30 selection:text-amber-900 transition-colors duration-300">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[var(--background)]/80 backdrop-blur-md z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors duration-300">
+      <nav className="fixed top-0 w-full bg-[var(--background)]/80 backdrop-blur-md z-30 border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors duration-300">
         <div className="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
           <a 
             href="#home"
@@ -107,46 +120,85 @@ function App() {
             </button>
           </div>
 
-          {/* Mobile Actions */}
+          {/* Mobile Hamburger Button - ONLY below md: */}
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors text-neutral-500 dark:text-neutral-400"
+              aria-label="Toggle Theme"
             >
               {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </button>
             <button 
               className="p-2 text-neutral-500 dark:text-neutral-400 hover:text-[#171717] dark:hover:text-white"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Open Menu"
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              <Menu size={24} />
             </button>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Nav */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-[#fafafa] dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-6 py-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4">
+      {/* Backdrop Blur Overlay - FIXED HIGHEST PRIORITY (z-40) */}
+      <div 
+        className={`fixed inset-0 bg-black/40 backdrop-blur-md z-40 transition-opacity duration-300 md:hidden ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* Mobile Sidebar Drawer - FIXED HIGHEST PRIORITY (z-50) */}
+      <div className={`fixed top-0 right-0 h-full w-[280px] bg-white dark:bg-[#171717] z-50 shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
+        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        {/* Close Button Inside Sidebar */}
+        <button 
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute top-5 right-6 p-2 transition-opacity"
+          aria-label="Close Menu"
+        >
+          <X size={24} />
+        </button>
+
+        <div className="flex flex-col h-full p-6 pt-24 gap-6 text-left">
+          <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-left text-sm py-2 transition-colors ${
-                  activeSection === link.id ? 'text-[#171717] dark:text-white font-medium' : 'text-neutral-500 dark:text-neutral-400'
+                className={`flex items-center gap-4 text-lg font-medium transition-colors ${
+                  activeSection === link.id ? 'opacity-100' : 'opacity-60'
                 }`}
               >
+                <span>
+                  {link.icon}
+                </span>
                 {link.label}
               </a>
             ))}
           </div>
-        )}
-      </nav>
+          
+          {/* Sidebar Footer */}
+          <div className="mt-auto pt-8 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-neutral-400">
+            <span className="text-xs uppercase tracking-widest font-bold">AKN Portfolio</span>
+            <div className="flex gap-4">
+              <Github size={18} />
+              <Mail size={18} />
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto px-6 pt-32 pb-24 space-y-32">
         <section id="home" className="scroll-mt-32">
           <Home />
+        </section>
+
+        <section id="about" className="scroll-mt-32">
+          <About />
         </section>
         
         <section id="techtrip" className="scroll-mt-32">
