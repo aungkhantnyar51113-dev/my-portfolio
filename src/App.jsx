@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import Home from './components/Home'
 import TechTrip from './components/TechTrip'
 import Projects from './components/Projects'
@@ -16,6 +17,33 @@ function App() {
     }
     return 'light'
   })
+
+  // Intersection Observer to update active section on scroll
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger when section is in the middle of view
+      threshold: 0
+    }
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+    const sections = ['home', 'techtrip', 'projects', 'certificates']
+    
+    sections.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -38,45 +66,35 @@ function App() {
     { id: 'certificates', label: 'Certificates' },
   ]
 
-  const renderSection = () => {
-    switch (activeSection) {
-      case 'home':
-        return <Home />
-      case 'techtrip':
-        return <TechTrip />
-      case 'projects':
-        return <Projects />
-      case 'certificates':
-        return <Certificates />
-      default:
-        return <Home />
-    }
-  }
-
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-amber-100 dark:selection:bg-amber-900/30 selection:text-amber-900 transition-colors duration-300">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-[var(--background)]/80 backdrop-blur-md z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors duration-300">
         <div className="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
-          <button 
-            onClick={() => setActiveSection('home')}
-            className="text-lg font-medium tracking-tight hover:opacity-70 transition-opacity dark:text-white"
+          <a 
+            href="#home"
+            className="group flex items-center gap-1.5 text-xl font-black tracking-tighter transition-all duration-300 hover:scale-105"
           >
-            AKN.
-          </button>
+            <span className="text-neutral-400 dark:text-neutral-600 font-light mr-0.5">&lt;</span>
+            <span className="bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent group-hover:from-indigo-500 group-hover:to-cyan-400 transition-all duration-500">
+              AKN
+            </span>
+            <span className="text-neutral-800 dark:text-white">.dev</span>
+            <span className="text-neutral-400 dark:text-neutral-600 font-light ml-0.5">/&gt;</span>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.id}
-                onClick={() => setActiveSection(link.id)}
+                href={`#${link.id}`}
                 className={`text-sm transition-colors hover:text-[#171717] dark:hover:text-white ${
                   activeSection === link.id ? 'text-[#171717] dark:text-white font-medium' : 'text-neutral-500 dark:text-neutral-400'
                 }`}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
             
             {/* Theme Toggle */}
@@ -110,37 +128,47 @@ function App() {
         {isMenuOpen && (
           <div className="md:hidden absolute top-16 left-0 w-full bg-[#fafafa] dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-6 py-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.id}
-                onClick={() => {
-                  setActiveSection(link.id)
-                  setIsMenuOpen(false)
-                }}
+                href={`#${link.id}`}
+                onClick={() => setIsMenuOpen(false)}
                 className={`text-left text-sm py-2 transition-colors ${
                   activeSection === link.id ? 'text-[#171717] dark:text-white font-medium' : 'text-neutral-500 dark:text-neutral-400'
                 }`}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </div>
         )}
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-3xl mx-auto px-6 pt-32 pb-24 min-h-[calc(100vh-80px)]">
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-          {renderSection()}
-        </div>
+      <main className="max-w-3xl mx-auto px-6 pt-32 pb-24 space-y-32">
+        <section id="home" className="scroll-mt-32">
+          <Home />
+        </section>
+        
+        <section id="techtrip" className="scroll-mt-32">
+          <TechTrip />
+        </section>
+
+        <section id="projects" className="scroll-mt-32">
+          <Projects />
+        </section>
+
+        <section id="certificates" className="scroll-mt-32">
+          <Certificates />
+        </section>
       </main>
 
       {/* Footer */}
       <footer className="max-w-3xl mx-auto px-6 py-12 border-t border-neutral-200/50 dark:border-neutral-800/50 transition-colors duration-300">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-sm text-neutral-500 dark:text-neutral-400">
-            © {new Date().getFullYear()} Aung Khant Nyar. Built with React & Tailwind v4.
+            © {new Date().getFullYear()} Aung Khant Nyar, Fullstack Engineer
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6"> 
             <a href="https://github.com/aungkhantnyar51113-dev" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-[#171717] dark:hover:text-white transition-colors">
               <Github size={18} />
             </a>

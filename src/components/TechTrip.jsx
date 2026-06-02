@@ -3,16 +3,16 @@ const TechTrip = () => {
     {
       year: '2026',
       title: 'Refining & Deepening',
-      description: 'Focused on refining Front-End expertise, mastering Next.js, and launching the "Books & Friends" social platform.',
+      description: 'Focused on refining Front-End expertise, mastering Next.js, and launching the "Books & Friends" social platform.Then, I passed the ITPEC (IP) passport exam course. And now, i am learning PHP and Laravel.',
       status: 'Current',
       milestones: ['Next.js App Router', 'TypeScript Transition', 'Community Building']
     },
     {
       year: '2025',
       title: 'The Foundation',
-      description: 'Built a solid foundation in modern web development. Mastered React, explored Node.js, and learned relational database design.',
+      description: 'Built a solid foundation in modern web development. I understand well the Html, Css, and JavaScript and mySQL.Next, I am familiar with React, Node.js at Fairway Technology(Tech School). By the time of learning web development, I have learned about ITPEC (IP) passport exam course',
       status: 'Completed',
-      milestones: ['React Ecosystem', 'RESTful API Design', 'SQL Fundamentals']
+      milestones: ['React Ecosystem', 'Responsive Design', 'SQL Fundamentals']
     }
   ]
 
