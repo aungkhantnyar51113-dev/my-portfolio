@@ -1,35 +1,75 @@
+import { useState, useEffect } from 'react'
+
 const About = () => {
+  const [currentImage, setCurrentImage] = useState(0)
+  
+  const images = [
+    '/group.jpg',
+    '/asking.jpg',
+    '/uniform.jpg',
+    'teaching.jpg',
+    '/present.jpg'
+  ]
+
   const stats = [
     { label: 'Experience', value: '1+ Years' },
-    { label: 'Projects Built', value: '10+' },
+    { label: 'Projects Built', value: '5+' },
     { label: 'Passion', value: '100%' }
   ]
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length)
+    }, 3500) // Auto-slide every 3.5 seconds
+
+    return () => clearInterval(timer)
+  }, [images.length])
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-12 px-4 md:px-8 transition-colors duration-300">
-      {/* Image Card Side */}
+      {/* Image Carousel Side */}
       <div className="relative group">
         {/* Neon Glow Container */}
-        <div className="relative rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_40px_rgba(99,102,241,0.2)] border border-neutral-200 dark:border-indigo-500/30 transition-all duration-500 hover:shadow-indigo-500/50">
-          {/* Image */}
-          <div className="relative h-[450px] w-full">
-            <img 
-              src="/personal.jpg" 
-              alt="Aung Khant Nyar Profile" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            
-            {/* Text Inside Image Card */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <h3 className="text-2xl font-black tracking-wider uppercase mb-1">
-                Aung Khant Nyar
-              </h3>
-              <p className="text-indigo-400 font-medium text-sm tracking-wide">
-                A Young Boy
-              </p>
+        <div className="relative rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_40px_rgba(99,102,241,0.2)] border border-neutral-200 dark:border-indigo-500/30 transition-all duration-500 hover:shadow-indigo-500/50 h-[450px] w-full bg-neutral-100 dark:bg-neutral-900">
+          {/* Slideshow Images */}
+          {images.map((img, index) => (
+            <div 
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentImage ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            >
+              <img 
+                src={img} 
+                alt={`Slide ${index + 1}`} 
+                className="w-full h-full object-cover"
+              />
             </div>
+          ))}
+
+          {/* Subtle Gradient Overlay - Stays on top */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20" />
+          
+          {/* Text Inside Image Card - Stays on top */}
+          <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-30">
+            <h3 className="text-2xl font-black tracking-wider uppercase mb-1">
+              Aung Khant Nyar
+            </h3>
+            <p className="text-indigo-400 font-medium text-sm tracking-wide">
+              Web Developer & Tech Learner
+            </p>
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="absolute top-6 right-8 flex gap-2 z-30">
+            {images.map((_, index) => (
+              <div 
+                key={index}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  index === currentImage ? 'w-6 bg-indigo-500' : 'w-1.5 bg-white/30'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>
