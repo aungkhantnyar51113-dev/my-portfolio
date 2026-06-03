@@ -5,7 +5,7 @@ const Projects = () => {
     {
       title: 'Books & Friends',
       description: 'A minimalist social platform for book enthusiasts to share reviews, track reading progress, and connect with fellow readers.',
-      tech: ['React', 'Next.js', 'Tailwind CSS', 'PostgreSQL'],
+      tech: ['React', 'Next.js', 'Tailwind CSS', 'SupaBase'],
       github: 'https://github.com/aungkhantnyar51113-dev/books-and-friends',
       live: 'https://books-and-friends-kappa.vercel.app'
     },

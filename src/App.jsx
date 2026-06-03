@@ -87,10 +87,10 @@ function App() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-amber-100 dark:selection:bg-amber-900/30 selection:text-amber-900 transition-colors duration-300">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-[var(--background)]/80 backdrop-blur-md z-30 border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors duration-300">
-        <div className="max-w-3xl mx-auto px-6 h-16 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
           <a
             href="#home"
-            className="group flex items-center gap-1.5 text-xl font-black tracking-tighter transition-all duration-300 hover:scale-105"
+            className="group flex items-center gap-1.5 text-xl font-black tracking-tighter transition-all duration-300 hover:scale-105 mr-auto"
           >
             <span className="text-neutral-400 dark:text-neutral-500 font-light mr-0.5">&lt;</span>
             <span className="bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent group-hover:from-indigo-500 group-hover:to-cyan-400 transition-all duration-500">
@@ -101,13 +101,13 @@ function App() {
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex flex-row items-center gap-x-8 whitespace-nowrap">
+          <div className="hidden md:flex flex-row items-center gap-8 whitespace-nowrap">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className={`text-sm transition-colors hover:text-[#171717] dark:hover:text-white px-3 py-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 ${
-                  activeSection === link.id ? 'text-[#171717] dark:text-white font-medium bg-neutral-100 dark:bg-neutral-800' : 'text-neutral-500 dark:text-neutral-400'
+                className={`text-sm transition-colors hover:text-cyan-400 pb-1 border-b-2 ${
+                  activeSection === link.id ? 'text-[#171717] dark:text-white font-medium border-cyan-400' : 'text-neutral-500 dark:text-neutral-400 border-transparent'
                 }`}
               >
                 {link.label}
