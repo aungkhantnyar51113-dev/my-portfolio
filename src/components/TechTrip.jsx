@@ -19,8 +19,8 @@ const TechTrip = () => {
   return (
     <section className="max-w-2xl mx-auto py-8 transition-colors duration-300">
       <div className="space-y-4 mb-16">
-        <h2 className="text-3xl font-medium tracking-tight dark:text-neutral-100">Tech Trip</h2>
-        <p className="text-neutral-500 dark:text-neutral-300 font-light">A chronological look at my growth and learning path.</p>
+        <h2 className="text-3xl font-medium tracking-tight text-neutral-900 dark:text-white">Tech Trip</h2>
+        <p className="text-neutral-500 dark:text-neutral-200 font-light">A chronological look at my growth and learning path.</p>
       </div>
 
       <div className="relative border-l border-neutral-200 dark:border-neutral-800 ml-4 space-y-16 transition-colors duration-300">
@@ -34,7 +34,7 @@ const TechTrip = () => {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <span className={`text-sm font-semibold tracking-tighter ${
-                  item.status === 'Current' ? 'text-amber-600 dark:text-amber-400' : 'text-neutral-400 dark:text-neutral-500'
+                  item.status === 'Current' ? 'text-amber-600 dark:text-amber-400' : 'text-neutral-400 dark:text-neutral-400'
                 }`}>
                   {item.year}
                 </span>
@@ -44,17 +44,17 @@ const TechTrip = () => {
                   </span>
                 )}
               </div>
-              
+
               <div className="space-y-2">
-                <h3 className="text-xl font-medium text-[#171717] dark:text-neutral-100">{item.title}</h3>
-                <p className="text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
+                <h3 className="text-xl font-medium text-[#171717] dark:text-white">{item.title}</h3>
+                <p className="text-neutral-600 dark:text-neutral-200 font-light leading-relaxed">
                   {item.description}
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-2 pt-2">
                 {item.milestones.map((milestone) => (
-                  <span 
+                  <span
                     key={milestone}
                     className="text-xs text-neutral-500 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded transition-colors duration-300"
                   >

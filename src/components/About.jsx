@@ -6,14 +6,14 @@ const About = () => {
   const images = [
     '/group.jpg',
     '/asking.jpg',
-    '/uniform.jpg',
+    '/fairway.jpg',
     'teaching.jpg',
-    '/present.jpg'
+    '/work.jpg'
   ]
 
   const stats = [
     { label: 'Experience', value: '1+ Years' },
-    { label: 'Projects Built', value: '5+' },
+    { label: 'Projects Built', value: '10+' },
     { label: 'Passion', value: '100%' }
   ]
 
@@ -30,7 +30,7 @@ const About = () => {
       {/* Image Carousel Side */}
       <div className="relative group">
         {/* Neon Glow Container */}
-        <div className="relative rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_40px_rgba(99,102,241,0.2)] border border-neutral-200 dark:border-indigo-500/30 transition-all duration-500 hover:shadow-indigo-500/50 h-[450px] w-full bg-neutral-100 dark:bg-neutral-900">
+        <div className="relative rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_40px_rgba(99,102,241,0.2)] border border-neutral-200 dark:border-indigo-500/30 transition-all duration-500 hover:shadow-indigo-500/50 h-[450px] w-full bg-white dark:bg-neutral-900">
           {/* Slideshow Images */}
           {images.map((img, index) => (
             <div 
@@ -56,7 +56,7 @@ const About = () => {
               Aung Khant Nyar
             </h3>
             <p className="text-indigo-400 font-medium text-sm tracking-wide">
-              Web Developer & Tech Learner
+              Images of Memories Passing By
             </p>
           </div>
 
@@ -79,9 +79,9 @@ const About = () => {
         <div className="space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight">
              <br />
-            <span className="text-indigo-600 dark:text-indigo-400">Who I Am?</span>
+            <span className="text-indigo-600 dark:text-cyan-400">Who I Am?</span>
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
+          <p className="text-lg text-neutral-600 dark:text-neutral-200 font-light leading-relaxed">
             I am juggling three worlds. By day, I study Chemistry (B.Sc.) at Dagon University, and by night, I dive into Full-stack Web Development and prepare for the ITPEC Fundamental IT Engineer (FE) exam. Balancing academic studies, intensive coding can be stressful, but I genuinely enjoy my life with friends.I am deeply focused on effective communication ensuring that I can clearly share technical ideas and collaborate well with others.For me, it's all about challenge, leveling up my skills, and building  my future to be better.
           </p>
         </div>
@@ -89,14 +89,14 @@ const About = () => {
         {/* Stats Section */}
         <div className="grid grid-cols-3 gap-4 pt-4">
           {stats.map((stat, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`pl-4 ${index !== 0 ? 'border-l border-neutral-200 dark:border-neutral-800' : ''}`}
             >
-              <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+              <div className="text-2xl font-bold text-indigo-600 dark:text-cyan-400">
                 {stat.value}
               </div>
-              <div className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500 font-semibold mt-1">
+              <div className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-300 font-semibold mt-1">
                 {stat.label}
               </div>
             </div>

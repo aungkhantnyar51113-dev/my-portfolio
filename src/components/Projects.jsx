@@ -6,8 +6,8 @@ const Projects = () => {
       title: 'Books & Friends',
       description: 'A minimalist social platform for book enthusiasts to share reviews, track reading progress, and connect with fellow readers.',
       tech: ['React', 'Next.js', 'Tailwind CSS', 'PostgreSQL'],
-      github: 'https://github.com/aungkhantnyar51113-dev/book-and-friends/commit/7edc05a29c0a76fb5feabf4125a0b68ed6f57292',
-      live: 'https://example.com'
+      github: 'https://github.com/aungkhantnyar51113-dev/books-and-friends',
+      live: 'https://books-and-friends-kappa.vercel.app'
     },
     {
       title: 'Visitors to Myanmar',
@@ -35,8 +35,8 @@ const Projects = () => {
   return (
     <section className="space-y-12 transition-colors duration-300">
       <div className="space-y-4">
-        <h2 className="text-3xl font-medium tracking-tight dark:text-neutral-100">Projects</h2>
-        <p className="text-neutral-500 dark:text-neutral-300 font-light max-w-xl">
+        <h2 className="text-3xl font-medium tracking-tight text-neutral-900 dark:text-white">Projects</h2>
+        <p className="text-neutral-500 dark:text-neutral-200 font-light max-w-xl">
           A selection of projects where I've applied my skills to solve real-world problems and explore new technologies.
         </p>
       </div>
@@ -45,20 +45,20 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div 
             key={index}
-            className="group flex flex-col bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-2xl p-6 hover:border-indigo-200 dark:hover:border-indigo-900 transition-all hover:shadow-xl hover:-translate-y-1"
+            className="group flex flex-col bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-2xl p-6 hover:border-indigo-200 dark:hover:border-indigo-900 transition-all hover:shadow-xl hover:-translate-y-1"
           >
             <div className="space-y-4 flex-grow">
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              <h3 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-cyan-400 transition-colors">
                 {project.title}
               </h3>
-              <p className="text-neutral-600 dark:text-neutral-400 text-sm font-light leading-relaxed line-clamp-2">
+              <p className="text-neutral-600 dark:text-neutral-300 text-sm font-light leading-relaxed line-clamp-2">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {project.tech.map((t) => (
                   <span 
                     key={t} 
-                    className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-100 text-[10px] uppercase tracking-wider font-bold rounded-md border border-slate-200 dark:border-slate-700/50 transition-colors shadow-sm"
+                    className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-[10px] uppercase tracking-wider font-bold rounded-md border border-slate-200 dark:border-slate-700 transition-colors shadow-sm"
                   >
                     {t}
                   </span>
@@ -67,20 +67,20 @@ const Projects = () => {
             </div>
             
             <div className="flex items-center gap-4 mt-8 pt-6 border-t border-neutral-100 dark:border-neutral-700/50 transition-colors duration-300">
-              <a 
-                href={project.github} 
+              <a
+                href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-500 dark:text-neutral-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-sm font-semibold"
+                className="text-neutral-500 dark:text-neutral-300 hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-sm font-semibold"
               >
                 <Github size={16} />
                 Code
               </a>
-              <a 
-                href={project.live} 
+              <a
+                href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-500 dark:text-neutral-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-sm font-semibold"
+                className="text-neutral-500 dark:text-neutral-300 hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-sm font-semibold"
               >
                 <ExternalLink size={16} />
                 Demo

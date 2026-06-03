@@ -1,4 +1,4 @@
-import { Github, Mail, Download, Send, Facebook, Instagram, Youtube, Linkedin } from 'lucide-react'
+import { Download, Mail } from 'lucide-react'
 
 const Home = () => {
   const skills = {
@@ -6,20 +6,6 @@ const Home = () => {
     'Back-End': ['Node.js', 'Express','Next.js', 'SQL (PostgreSQL)', 'PHP' , 'Laravel 9'],
     'Tools': ['Git', 'GitHub', 'VS Code', 'NPM/Yarn', 'Postman' , 'TRAE', 'Windsurf', 'Cursor AI' , 'Android Studio']
   }
-
-  const socials = [
-    { name: 'GitHub', icon: <Github size={20} />, url: 'https://github.com/aungkhantnyar51113-dev', color: 'hover:text-black dark:hover:text-white' },
-    { name: 'LinkedIn', icon: <Linkedin size={20} />, url: 'http://www.linkedin.com/in/aung-khant-nyar-58120b3a8', color: 'hover:text-blue-600' },
-    { name: 'Telegram', icon: <Send size={20} />, url: 'https://t.me/cslkoko', color: 'hover:text-sky-500' },
-    { name: 'Facebook', icon: <Facebook size={20} />, url: 'https://www.facebook.com/share/17W5Mp89PK/', color: 'hover:text-blue-500' },
-    { name: 'Instagram', icon: <Instagram size={20} />, url: 'https://instagram.com/reo532007', color: 'hover:text-pink-500' },
-    { name: 'YouTube', icon: <Youtube size={20} />, url: 'https://www.youtube.com/@AungKhantNyar-13th823', color: 'hover:text-red-600' },
-    { name: 'TikTok', icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-      </svg>
-    ), url: 'https://www.tiktok.com/@aungkhantnyar.dev', color: 'hover:text-cyan-400' },
-  ]
 
   return (
     <section className="space-y-24 transition-colors duration-300">
@@ -42,10 +28,10 @@ const Home = () => {
             <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-[#171717] dark:text-neutral-100 leading-tight">
               Hi, I'm Aung Khant Nyar.
             </h1>
-            <p className="text-xl md:text-2xl text-neutral-500 dark:text-neutral-300 leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-neutral-500 dark:text-neutral-200 leading-relaxed font-light">
               A 19-year-old Tech Learner and Web Developer from Myanmar.
-               I am deeply passionate about building modern digital solutions and is constantly upgrading my skills to become a professional full-stack engineer. 
-             
+               I am deeply passionate about building modern digital solutions and is constantly upgrading my skills to become a professional full-stack engineer.
+
             </p>
           </div>
 
@@ -69,38 +55,16 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Social Media Section */}
-      <div className="space-y-8">
-        <h2 className="text-lg font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Connect with Me</h2>
-        <div className="flex flex-wrap gap-6 md:gap-10">
-          {socials.map((social) => (
-            <a
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-3 text-neutral-500 dark:text-neutral-400 transition-all duration-300 ${social.color} group`}
-              title={social.name}
-            >
-              <span className="p-3 bg-neutral-50 dark:bg-neutral-900 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-sm border border-neutral-100 dark:border-neutral-800">
-                {social.icon}
-              </span>
-              <span className="text-sm font-medium hidden sm:block">{social.name}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-
       {/* Skills Matrix */}
       <div className="space-y-8">
-        <h2 className="text-lg font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Skills Matrix</h2>
+        <h2 className="text-lg font-medium text-neutral-400 dark:text-neutral-300 uppercase tracking-widest">Skills Matrix</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {Object.entries(skills).map(([category, items]) => (
             <div key={category} className="space-y-4">
-              <h3 className="text-sm font-semibold text-[#171717] dark:text-neutral-100">{category}</h3>
+              <h3 className="text-sm font-semibold text-[#171717] dark:text-white">{category}</h3>
               <div className="flex flex-wrap gap-2">
                 {items.map((skill) => (
-                  <span 
+                  <span
                     key={skill}
                     className="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 text-xs font-medium rounded-md border border-amber-100/50 dark:border-amber-900/30 transition-colors duration-300"
                   >
@@ -115,7 +79,7 @@ const Home = () => {
 
       {/* Brief About / Philosophy */}
       <div className="prose prose-neutral prose-lg max-w-none border-t border-neutral-100 dark:border-neutral-800 pt-16 transition-colors duration-300">
-        <p className="text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
+        <p className="text-neutral-600 dark:text-neutral-200 font-light leading-relaxed">
            I build web applications using React, Node.js, PHP, and Laravel 9.I can handle full-stack development.
            I create user interfaces (UI) using React and Material UI (MUI).
 
