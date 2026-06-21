@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const About = () => {
-  const [currentImage, setCurrentImage] = useState(0)
-  
   const images = [
     '/group.jpg',
     '/asking.jpg',
     '/fairway.jpg',
-    'teaching.jpg',
+    '/teaching.jpg',
     '/work.jpg'
   ]
 
@@ -17,41 +21,49 @@ const About = () => {
     { label: 'Passion', value: '100%' }
   ]
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length)
-    }, 3500) // Auto-slide every 3.5 seconds
-
-    return () => clearInterval(timer)
-  }, [images.length])
-
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-12 px-4 md:px-8 transition-colors duration-300">
       {/* Image Carousel Side */}
       <div className="relative group">
-        {/* Neon Glow Container */}
+        {/* Swiper Container */}
         <div className="relative rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_40px_rgba(99,102,241,0.2)] border border-neutral-200 dark:border-indigo-500/30 transition-all duration-500 hover:shadow-indigo-500/50 h-[450px] w-full bg-white dark:bg-neutral-900">
-          {/* Slideshow Images */}
-          {images.map((img, index) => (
-            <div 
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentImage ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
-            >
-              <img 
-                src={img} 
-                alt={`Slide ${index + 1}`} 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={0}
+            slidesPerView={1}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            }}
+            pagination={{
+              el: '.swiper-pagination',
+              clickable: true,
+            }}
+            loop={true}
+            speed={800}
+            effect="slide"
+            className="w-full h-full"
+          >
+            {images.map((img, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={img}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-          {/* Subtle Gradient Overlay - Stays on top */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20" />
-          
-          {/* Text Inside Image Card - Stays on top */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-30">
+          {/* Subtle Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20 pointer-events-none" />
+
+          {/* Text Inside Image Card */}
+          <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-30 pointer-events-none">
             <h3 className="text-2xl font-black tracking-wider uppercase mb-1">
               Aung Khant Nyar
             </h3>
@@ -60,17 +72,16 @@ const About = () => {
             </p>
           </div>
 
-          {/* Carousel Indicators */}
-          <div className="absolute top-6 right-8 flex gap-2 z-30">
-            {images.map((_, index) => (
-              <div 
-                key={index}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  index === currentImage ? 'w-6 bg-indigo-500' : 'w-1.5 bg-white/30'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Navigation Arrows */}
+          <button className="swiper-button-prev absolute left-4 top-1/2 -translate-y-1/2 z-40 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white border border-white/30">
+            <ChevronLeft size={14} />
+          </button>
+          <button className="swiper-button-next absolute right-4 top-1/2 -translate-y-1/2 z-40 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white border border-white/30">
+            <ChevronRight size={14} />
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="swiper-pagination absolute bottom-4 right-8 z-40 !bottom-auto !top-6 !right-8 !left-auto" />
         </div>
       </div>
 

@@ -7,19 +7,19 @@ const Certificates = () => {
   const certificates = [
     {
       name: 'Information Technology Passport Examination (IP)',
-      issuer: 'ITPEC / METI Japan',
+      issuer: 'ITPEC / Japan Government',
       date: 'April 2026',
       link: '/'
     },
     {
       name: 'Full Stack Web Development Professional',
-      issuer: 'Coursera / Meta',
+      issuer: 'Fairway Technology',
       date: 'Mar 2026',
       link: '/professional.jpg'
     },
     {
       name: 'Programming Foundation',
-      issuer: 'First Step ',
+      issuer: 'Fairway Technology',
       date: 'Oct 2025',
       link: '/basic.jpg'
     }

@@ -29,6 +29,13 @@ const Projects = () => {
       tech: ['Next.js (App Router)', 'TypeScript (TSX)', 'MDB (The Movie Database)'],
       github: 'https://github.com/aungkhantnyar51113-dev/movie-app',
       live: 'https://akn-movie.vercel.app'
+    },
+    {
+      title: 'AI 3D Model UI',
+      description: 'A simple UI for 3d design.',
+      tech: ['React','Three.js','created with v0.dev'],
+      github: 'https://github.com/aungkhantnyar51113-dev/',
+      live: 'https://v0-smartphone-showcase-landing-page-kpu5wd0fh-reo-web.vercel.app/'
     }
   ]
 
