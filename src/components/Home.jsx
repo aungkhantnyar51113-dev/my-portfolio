@@ -1,11 +1,7 @@
 import { Download, Mail } from 'lucide-react'
+import SkillsMarquee from './SkillsMarquee'
 
 const Home = () => {
-  const skills = {
-    'Front-End': ['React', 'JavaScript (ES6+)','Next.js', 'Tailwind CSS', 'Vite', 'HTML5/CSS3'],
-    'Back-End': ['Node.js', 'Express','Next.js', 'SQL (PostgreSQL)', 'PHP' , 'Laravel 9'],
-    'Tools': ['Git', 'GitHub', 'VS Code', 'NPM/Yarn', 'Postman' , 'TRAE', 'Windsurf', 'Cursor AI' , 'Android Studio']
-  }
 
   return (
     <section className="space-y-24 transition-colors duration-300">
@@ -56,26 +52,7 @@ const Home = () => {
       </div>
 
       {/* Skills Matrix */}
-      <div className="space-y-8">
-        <h2 className="text-lg font-medium text-neutral-400 dark:text-neutral-300 uppercase tracking-widest">Skills Matrix</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="space-y-4">
-              <h3 className="text-sm font-semibold text-[#171717] dark:text-white">{category}</h3>
-              <div className="flex flex-wrap gap-2">
-                {items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 text-xs font-medium rounded-md border border-amber-100/50 dark:border-amber-900/30 transition-colors duration-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <SkillsMarquee />
 
       {/* Brief About / Philosophy */}
       <div className="prose prose-neutral prose-lg max-w-none border-t border-neutral-100 dark:border-neutral-800 pt-16 transition-colors duration-300">

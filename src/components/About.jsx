@@ -12,7 +12,7 @@ const About = () => {
     '/asking.jpg',
     '/fairway.jpg',
     '/teaching.jpg',
-    '/work.jpg'
+    '/present.jpg'
   ]
 
   const stats = [
