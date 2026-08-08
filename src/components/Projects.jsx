@@ -3,6 +3,13 @@ import { Github, ExternalLink } from 'lucide-react'
 const Projects = () => {
   const projects = [
     {
+      title: 'OnlineShop E-commerce Web Application',
+      description: 'A modern and responsive e-commerce web application designed for seamless online shopping, featuring a user-friendly interface optimized for both desktop and mobile layouts.',
+      tech: ['React', 'Next.js', 'Tailwind CSS',],
+      github: '',
+      live: 'https://fashion-hub-taupe.vercel.app'
+    },
+    {
       title: 'Books & Friends',
       description: 'A minimalist social platform for book enthusiasts to share reviews, track reading progress, and connect with fellow readers.',
       tech: ['React', 'Next.js', 'Tailwind CSS', 'SupaBase'],
